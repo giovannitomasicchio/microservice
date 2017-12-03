@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: microservice
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Gianni
+Implementation-Vendor-Id: it.giovannitomasicchio
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/spring-boot-
+ starter-parent/microservice/
+Created-By: Maven Integration for Eclipse
+
