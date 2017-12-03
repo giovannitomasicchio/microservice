@@ -5,4 +5,9 @@
 		SELECT p FROM Post p LEFT JOIN FETCH p.postDetail LEFT JOIN FETCH p.author WHERE p.id = :id
 		]]></query>
     </named-query>
+    <named-query name="Author.getAuthorsStats">
+		<query><![CDATA[
+		SELECT new it.giovannitomasicchio.microservice.dto.AuthorStatsDTO(A.id, A.name, COUNT(P.id)) FROM Author A LEFT JOIN A.posts P GROUP BY A
+		]]></query>
+    </named-query>
 </entity-mappings>

@@ -23,7 +23,7 @@ public class PostControler {
 	PostService postService;
 	
 	@GetMapping("/bycustomjpa/")
-    public Post find(@RequestParam("id") Long id) {
+    public Post bycustomjpa(@RequestParam("id") Long id) {
         return postService.bycustomjpa();
     }
 	
