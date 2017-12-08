@@ -1,5 +1,6 @@
 package it.giovannitomasicchio.microservice;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,10 @@ import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 
 @SpringBootApplication
 public class MicroserviceApplication implements ApplicationListener<ContextRefreshedEvent> {
+	
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(MicroserviceApplication.class, args);
+	}
 	
 	@Bean
 	public Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
