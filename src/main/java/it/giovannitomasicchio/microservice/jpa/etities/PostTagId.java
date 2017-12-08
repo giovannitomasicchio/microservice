@@ -1,4 +1,4 @@
-package it.giovannitomasicchio.microservice.jpa;
+package it.giovannitomasicchio.microservice.jpa.etities;
 
 import java.io.Serializable;
 import javax.persistence.*;

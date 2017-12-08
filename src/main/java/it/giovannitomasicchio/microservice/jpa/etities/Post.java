@@ -1,4 +1,4 @@
-package it.giovannitomasicchio.microservice.jpa;
+package it.giovannitomasicchio.microservice.jpa.etities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,9 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 
 /**
  * The persistent class for the post database table.

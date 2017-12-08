@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.giovannitomasicchio.microservice.jpa.Comment;
-import it.giovannitomasicchio.microservice.jpa.Post;
+import it.giovannitomasicchio.microservice.jpa.etities.Comment;
+import it.giovannitomasicchio.microservice.jpa.etities.Post;
 import it.giovannitomasicchio.microservice.repositories.jpa.CommentJpaRepository;
 
 @Service

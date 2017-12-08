@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
-import it.giovannitomasicchio.microservice.jpa.Post;
+import it.giovannitomasicchio.microservice.jpa.etities.Post;
 
 public interface PostJpaRepository  extends JpaRepository<Post, Long> {
 	

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.giovannitomasicchio.microservice.dto.PostDTO;
-import it.giovannitomasicchio.microservice.jpa.Post;
+import it.giovannitomasicchio.microservice.jpa.etities.Post;
 import it.giovannitomasicchio.microservice.services.PostService;
 
 @RestController

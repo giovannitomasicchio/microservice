@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-mappings version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
-	<named-query name="Post.getPostDetailAuthor">
-		<query><![CDATA[
-		SELECT p FROM Post p LEFT JOIN FETCH p.postDetail LEFT JOIN FETCH p.author WHERE p.id = :id
-		]]></query>
-    </named-query>
     <named-query name="Author.getAuthorsStats">
 		<query><![CDATA[
 		SELECT new it.giovannitomasicchio.microservice.dto.AuthorStatsDTO(A.id, A.name, COUNT(P.id)) FROM Author A LEFT JOIN A.posts P GROUP BY A
