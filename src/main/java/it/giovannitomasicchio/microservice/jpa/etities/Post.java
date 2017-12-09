@@ -47,7 +47,7 @@ public class Post implements Serializable {
 	private PostDetail postDetail;
 
 //	@JsonBackReference
-	@OneToMany(mappedBy="post")
+	@OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PostTag> postTags;
 
 	public Post() {

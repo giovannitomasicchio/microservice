@@ -3,6 +3,7 @@ package it.giovannitomasicchio.microservice.jpa.etities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ public class Tag implements Serializable {
 
 //	@JsonBackReference
 	//bi-directional many-to-one association to PostTag
-	@OneToMany(mappedBy="tag")
+	@OneToMany(mappedBy="tag", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PostTag> postTags;
 
 	public Tag() {
