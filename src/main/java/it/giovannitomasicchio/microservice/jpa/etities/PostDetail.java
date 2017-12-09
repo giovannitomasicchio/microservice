@@ -6,16 +6,13 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
-/**
- * The persistent class for the post_detail database table.
- * 
- */
 @Entity
 @Table(name="post_detail")
 public class PostDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(columnDefinition="NUMERIC")
 	private Long id;
 
 	private String body;
@@ -23,10 +20,9 @@ public class PostDetail implements Serializable {
 	private String title;
 
 	@JsonBackReference
-	//bi-directional one-to-one association to Post
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id")
-	@MapsId
+	@JoinColumn(name="id", foreignKey=@ForeignKey(name="fk_post_detail_post"))
+	@MapsId("id")
 	private Post post;
 
 	public PostDetail() {

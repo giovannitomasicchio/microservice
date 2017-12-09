@@ -5,16 +5,14 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-/**
- * The persistent class for the post_tag database table.
- * 
- */
 @Entity
 @Table(name="post_tag")
 public class PostTag implements Serializable {
@@ -23,18 +21,16 @@ public class PostTag implements Serializable {
 	@EmbeddedId
 	private PostTagId id;
 
-	//bi-directional many-to-one association to Post
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "post_id")
+	@JoinColumn(name = "post_id", columnDefinition="NUMERIC", foreignKey=@ForeignKey(name="fk_post_tag_post"))
 	@MapsId("postId")
-//	@JsonManagedReference
+	@JsonManagedReference
 	private Post post;
 
-	//bi-directional many-to-one association to Tag
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "tag_id")
+	@JoinColumn(name = "tag_id", columnDefinition="NUMERIC", foreignKey=@ForeignKey(name="fk_post_tag_tag"))
 	@MapsId("tagId")
-//	@JsonManagedReference
+	@JsonManagedReference
 	private Tag tag;
 
 	public PostTag() {

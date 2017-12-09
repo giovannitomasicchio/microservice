@@ -5,8 +5,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,12 +19,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-/**
- * The persistent class for the post database table.
- * 
- */
 @Entity
 @Table(name = "post")
 public class Post implements Serializable {
@@ -31,24 +30,24 @@ public class Post implements Serializable {
 	@Id
 	@SequenceGenerator(name="POST_ID_GENERATOR", sequenceName="S_POST", allocationSize = 50)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="POST_ID_GENERATOR")
+	@Column(columnDefinition="NUMERIC")
 	private Long id;
 
 	private LocalDateTime data;
 
-//	@JsonBackReference
+	@JsonBackReference
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 
-	//bi-directional many-to-one association to Author
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "author_id")
+	@JoinColumn(name = "author_id", foreignKey=@ForeignKey(name="fk_post_author"))
 	private Author author;
 
 	@JsonManagedReference
-	@OneToOne(mappedBy="post", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne(mappedBy="post", cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional = false)
 	private PostDetail postDetail;
 
-//	@JsonBackReference
+	@JsonBackReference
 	@OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PostTag> postTags;
 

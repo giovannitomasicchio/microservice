@@ -3,6 +3,7 @@ package it.giovannitomasicchio.microservice.jpa.etities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-/**
- * The persistent class for the author database table.
- * 
- */
 @Entity
 @Table(name = "author")
 public class Author implements Serializable {
@@ -24,15 +22,16 @@ public class Author implements Serializable {
 	@Id
 	@SequenceGenerator(name="AUTHOR_ID_GENERATOR", sequenceName="S_AUTHOR", allocationSize = 50)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="AUTHOR_ID_GENERATOR")
+	@Column(columnDefinition="NUMERIC")
 	private Long id;
 
 	private String name;
 
-//	@JsonBackReference
+	@JsonBackReference
 	@OneToMany(mappedBy="author")
 	private List<Comment> comments;
 
-//	@JsonBackReference
+	@JsonBackReference
 	@OneToMany(mappedBy="author")
 	private List<Post> posts;
 

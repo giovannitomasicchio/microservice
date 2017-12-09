@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,11 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-/**
- * The persistent class for the tag database table.
- * 
- */
 @Entity
 @Table(name = "tag")
 public class Tag implements Serializable {
@@ -25,12 +23,12 @@ public class Tag implements Serializable {
 	@Id
 	@SequenceGenerator(name="TAG_ID_GENERATOR", sequenceName="S_TAG", allocationSize = 50)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TAG_ID_GENERATOR")
+	@Column(columnDefinition="NUMERIC")
 	private Long id;
 
 	private String name;
 
-//	@JsonBackReference
-	//bi-directional many-to-one association to PostTag
+	@JsonBackReference
 	@OneToMany(mappedBy="tag", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PostTag> postTags;
 

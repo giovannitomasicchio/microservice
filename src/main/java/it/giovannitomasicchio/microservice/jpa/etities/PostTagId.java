@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Embeddable
 public class PostTagId implements Serializable {
-	//default serial version id, required for serializable classes.
+
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="post_id", insertable=false, updatable=false)

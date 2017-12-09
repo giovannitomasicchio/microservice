@@ -7,11 +7,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.time.LocalDateTime;
 
-
-/**
- * The persistent class for the comment database table.
- * 
- */
 @Entity
 @Table(name = "comment")
 public class Comment implements Serializable {
@@ -20,6 +15,7 @@ public class Comment implements Serializable {
 	@Id
 	@SequenceGenerator(name="COMMENT_ID_GENERATOR", sequenceName="S_COMMENT", allocationSize = 50)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="COMMENT_ID_GENERATOR")
+	@Column(columnDefinition="NUMERIC")
 	private Long id;
 
 	private String body;
@@ -28,12 +24,12 @@ public class Comment implements Serializable {
 
 	@JsonManagedReference
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "author_id")
+	@JoinColumn(name = "author_id", foreignKey=@ForeignKey(name="fk_comment_author"))
 	private Author author;
 
 	@JsonManagedReference
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "post_id")
+	@JoinColumn(name = "post_id", foreignKey=@ForeignKey(name="fk_comment_post"))
 	private Post post;
 
 	public Comment() {
