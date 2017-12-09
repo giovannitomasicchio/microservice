@@ -29,12 +29,10 @@ public class Author implements Serializable {
 	private String name;
 
 //	@JsonBackReference
-	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="author")
 	private List<Comment> comments;
 
 //	@JsonBackReference
-	//bi-directional many-to-one association to Post
 	@OneToMany(mappedBy="author")
 	private List<Post> posts;
 

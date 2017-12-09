@@ -27,13 +27,13 @@ public class Comment implements Serializable {
 	private LocalDateTime data;
 
 	@JsonManagedReference
-	//bi-directional many-to-one association to Author
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "author_id")
 	private Author author;
 
 	@JsonManagedReference
-	//bi-directional many-to-one association to Post
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "post_id")
 	private Post post;
 
 	public Comment() {
