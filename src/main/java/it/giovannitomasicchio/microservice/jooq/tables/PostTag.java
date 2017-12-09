@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PostTag extends TableImpl<PostTagRecord> {
 
-    private static final long serialVersionUID = -1927431906;
+    private static final long serialVersionUID = -1120581744;
 
     /**
      * The reference instance of <code>public.post_tag</code>
@@ -64,11 +64,6 @@ public class PostTag extends TableImpl<PostTagRecord> {
      * The column <code>public.post_tag.tag_id</code>.
      */
     public final TableField<PostTagRecord, BigDecimal> TAG_ID = createField("tag_id", org.jooq.impl.SQLDataType.NUMERIC.nullable(false), this, "");
-
-    /**
-     * The column <code>public.post_tag.dummy</code>.
-     */
-    public final TableField<PostTagRecord, BigDecimal> DUMMY = createField("dummy", org.jooq.impl.SQLDataType.NUMERIC, this, "");
 
     /**
      * Create a <code>public.post_tag</code> table reference
@@ -112,7 +107,7 @@ public class PostTag extends TableImpl<PostTagRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.FKI_POST_TAG_POST, Indexes.FKI_POST_TAG_TAG, Indexes.POST_TAG_PKEY);
+        return Arrays.<Index>asList(Indexes.POST_TAG_PKEY);
     }
 
     /**

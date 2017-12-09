@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> implements Record3<BigDecimal, String, String> {
 
-    private static final long serialVersionUID = -927186885;
+    private static final long serialVersionUID = 22699493;
 
     /**
      * Setter for <code>public.post_detail.id</code>.
@@ -47,30 +47,30 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
     }
 
     /**
-     * Setter for <code>public.post_detail.title</code>.
-     */
-    public void setTitle(String value) {
-        set(1, value);
-    }
-
-    /**
-     * Getter for <code>public.post_detail.title</code>.
-     */
-    public String getTitle() {
-        return (String) get(1);
-    }
-
-    /**
      * Setter for <code>public.post_detail.body</code>.
      */
     public void setBody(String value) {
-        set(2, value);
+        set(1, value);
     }
 
     /**
      * Getter for <code>public.post_detail.body</code>.
      */
     public String getBody() {
+        return (String) get(1);
+    }
+
+    /**
+     * Setter for <code>public.post_detail.title</code>.
+     */
+    public void setTitle(String value) {
+        set(2, value);
+    }
+
+    /**
+     * Getter for <code>public.post_detail.title</code>.
+     */
+    public String getTitle() {
         return (String) get(2);
     }
 
@@ -119,7 +119,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public Field<String> field2() {
-        return PostDetail.POST_DETAIL.TITLE;
+        return PostDetail.POST_DETAIL.BODY;
     }
 
     /**
@@ -127,7 +127,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public Field<String> field3() {
-        return PostDetail.POST_DETAIL.BODY;
+        return PostDetail.POST_DETAIL.TITLE;
     }
 
     /**
@@ -143,7 +143,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public String component2() {
-        return getTitle();
+        return getBody();
     }
 
     /**
@@ -151,7 +151,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public String component3() {
-        return getBody();
+        return getTitle();
     }
 
     /**
@@ -167,7 +167,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public String value2() {
-        return getTitle();
+        return getBody();
     }
 
     /**
@@ -175,7 +175,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public String value3() {
-        return getBody();
+        return getTitle();
     }
 
     /**
@@ -192,7 +192,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public PostDetailRecord value2(String value) {
-        setTitle(value);
+        setBody(value);
         return this;
     }
 
@@ -201,7 +201,7 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
      */
     @Override
     public PostDetailRecord value3(String value) {
-        setBody(value);
+        setTitle(value);
         return this;
     }
 
@@ -230,11 +230,11 @@ public class PostDetailRecord extends UpdatableRecordImpl<PostDetailRecord> impl
     /**
      * Create a detached, initialised PostDetailRecord
      */
-    public PostDetailRecord(BigDecimal id, String title, String body) {
+    public PostDetailRecord(BigDecimal id, String body, String title) {
         super(PostDetail.POST_DETAIL);
 
         set(0, id);
-        set(1, title);
-        set(2, body);
+        set(1, body);
+        set(2, title);
     }
 }

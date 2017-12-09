@@ -41,7 +41,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Comment extends TableImpl<CommentRecord> {
 
-    private static final long serialVersionUID = 600789897;
+    private static final long serialVersionUID = -705394419;
 
     /**
      * The reference instance of <code>public.comment</code>
@@ -62,24 +62,24 @@ public class Comment extends TableImpl<CommentRecord> {
     public final TableField<CommentRecord, BigDecimal> ID = createField("id", org.jooq.impl.SQLDataType.NUMERIC.nullable(false), this, "");
 
     /**
-     * The column <code>public.comment.author_id</code>.
+     * The column <code>public.comment.body</code>.
      */
-    public final TableField<CommentRecord, BigDecimal> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.NUMERIC.nullable(false), this, "");
-
-    /**
-     * The column <code>public.comment.post_id</code>.
-     */
-    public final TableField<CommentRecord, BigDecimal> POST_ID = createField("post_id", org.jooq.impl.SQLDataType.NUMERIC.nullable(false), this, "");
+    public final TableField<CommentRecord, String> BODY = createField("body", org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>public.comment.data</code>.
      */
-    public final TableField<CommentRecord, Timestamp> DATA = createField("data", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<CommentRecord, Timestamp> DATA = createField("data", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
-     * The column <code>public.comment.body</code>.
+     * The column <code>public.comment.author_id</code>.
      */
-    public final TableField<CommentRecord, String> BODY = createField("body", org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<CommentRecord, BigDecimal> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.NUMERIC, this, "");
+
+    /**
+     * The column <code>public.comment.post_id</code>.
+     */
+    public final TableField<CommentRecord, BigDecimal> POST_ID = createField("post_id", org.jooq.impl.SQLDataType.NUMERIC, this, "");
 
     /**
      * Create a <code>public.comment</code> table reference
@@ -123,7 +123,7 @@ public class Comment extends TableImpl<CommentRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.COMMENT_PKEY, Indexes.FKI_COMMENT_AUTHOR, Indexes.FKI_COMMENT_POST);
+        return Arrays.<Index>asList(Indexes.COMMENT_PKEY);
     }
 
     /**

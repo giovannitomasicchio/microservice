@@ -61,7 +61,7 @@ public class Keys {
     public static final ForeignKey<CommentRecord, AuthorRecord> COMMENT__FK_COMMENT_AUTHOR = ForeignKeys0.COMMENT__FK_COMMENT_AUTHOR;
     public static final ForeignKey<CommentRecord, PostRecord> COMMENT__FK_COMMENT_POST = ForeignKeys0.COMMENT__FK_COMMENT_POST;
     public static final ForeignKey<PostRecord, AuthorRecord> POST__FK_POST_AUTHOR = ForeignKeys0.POST__FK_POST_AUTHOR;
-    public static final ForeignKey<PostDetailRecord, PostRecord> POST_DETAIL__FK_POST_DETAIL_POST = ForeignKeys0.POST_DETAIL__FK_POST_DETAIL_POST;
+    public static final ForeignKey<PostDetailRecord, PostRecord> POST_DETAIL__FKKHUHIXRLGDFH58XKIQELM7DMB = ForeignKeys0.POST_DETAIL__FKKHUHIXRLGDFH58XKIQELM7DMB;
     public static final ForeignKey<PostTagRecord, PostRecord> POST_TAG__FK_POST_TAG_POST = ForeignKeys0.POST_TAG__FK_POST_TAG_POST;
     public static final ForeignKey<PostTagRecord, TagRecord> POST_TAG__FK_POST_TAG_TAG = ForeignKeys0.POST_TAG__FK_POST_TAG_TAG;
 
@@ -82,7 +82,7 @@ public class Keys {
         public static final ForeignKey<CommentRecord, AuthorRecord> COMMENT__FK_COMMENT_AUTHOR = createForeignKey(it.giovannitomasicchio.microservice.jooq.Keys.AUTHOR_PKEY, Comment.COMMENT, "comment__fk_comment_author", Comment.COMMENT.AUTHOR_ID);
         public static final ForeignKey<CommentRecord, PostRecord> COMMENT__FK_COMMENT_POST = createForeignKey(it.giovannitomasicchio.microservice.jooq.Keys.POST_PKEY, Comment.COMMENT, "comment__fk_comment_post", Comment.COMMENT.POST_ID);
         public static final ForeignKey<PostRecord, AuthorRecord> POST__FK_POST_AUTHOR = createForeignKey(it.giovannitomasicchio.microservice.jooq.Keys.AUTHOR_PKEY, Post.POST, "post__fk_post_author", Post.POST.AUTHOR_ID);
-        public static final ForeignKey<PostDetailRecord, PostRecord> POST_DETAIL__FK_POST_DETAIL_POST = createForeignKey(it.giovannitomasicchio.microservice.jooq.Keys.POST_PKEY, PostDetail.POST_DETAIL, "post_detail__fk_post_detail_post", PostDetail.POST_DETAIL.ID);
+        public static final ForeignKey<PostDetailRecord, PostRecord> POST_DETAIL__FKKHUHIXRLGDFH58XKIQELM7DMB = createForeignKey(it.giovannitomasicchio.microservice.jooq.Keys.POST_PKEY, PostDetail.POST_DETAIL, "post_detail__fkkhuhixrlgdfh58xkiqelm7dmb", PostDetail.POST_DETAIL.ID);
         public static final ForeignKey<PostTagRecord, PostRecord> POST_TAG__FK_POST_TAG_POST = createForeignKey(it.giovannitomasicchio.microservice.jooq.Keys.POST_PKEY, PostTag.POST_TAG, "post_tag__fk_post_tag_post", PostTag.POST_TAG.POST_ID);
         public static final ForeignKey<PostTagRecord, TagRecord> POST_TAG__FK_POST_TAG_TAG = createForeignKey(it.giovannitomasicchio.microservice.jooq.Keys.TAG_PKEY, PostTag.POST_TAG, "post_tag__fk_post_tag_tag", PostTag.POST_TAG.TAG_ID);
     }

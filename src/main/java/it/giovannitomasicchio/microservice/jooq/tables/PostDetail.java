@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class PostDetail extends TableImpl<PostDetailRecord> {
 
-    private static final long serialVersionUID = 337114723;
+    private static final long serialVersionUID = 934185295;
 
     /**
      * The reference instance of <code>public.post_detail</code>
@@ -61,14 +61,14 @@ public class PostDetail extends TableImpl<PostDetailRecord> {
     public final TableField<PostDetailRecord, BigDecimal> ID = createField("id", org.jooq.impl.SQLDataType.NUMERIC.nullable(false), this, "");
 
     /**
-     * The column <code>public.post_detail.title</code>.
-     */
-    public final TableField<PostDetailRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(100).nullable(false), this, "");
-
-    /**
      * The column <code>public.post_detail.body</code>.
      */
-    public final TableField<PostDetailRecord, String> BODY = createField("body", org.jooq.impl.SQLDataType.CLOB, this, "");
+    public final TableField<PostDetailRecord, String> BODY = createField("body", org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
+
+    /**
+     * The column <code>public.post_detail.title</code>.
+     */
+    public final TableField<PostDetailRecord, String> TITLE = createField("title", org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
 
     /**
      * Create a <code>public.post_detail</code> table reference
@@ -136,7 +136,7 @@ public class PostDetail extends TableImpl<PostDetailRecord> {
      */
     @Override
     public List<ForeignKey<PostDetailRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<PostDetailRecord, ?>>asList(Keys.POST_DETAIL__FK_POST_DETAIL_POST);
+        return Arrays.<ForeignKey<PostDetailRecord, ?>>asList(Keys.POST_DETAIL__FKKHUHIXRLGDFH58XKIQELM7DMB);
     }
 
     /**

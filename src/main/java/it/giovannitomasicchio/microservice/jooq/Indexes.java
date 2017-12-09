@@ -37,13 +37,8 @@ public class Indexes {
 
     public static final Index AUTHOR_PKEY = Indexes0.AUTHOR_PKEY;
     public static final Index COMMENT_PKEY = Indexes0.COMMENT_PKEY;
-    public static final Index FKI_COMMENT_AUTHOR = Indexes0.FKI_COMMENT_AUTHOR;
-    public static final Index FKI_COMMENT_POST = Indexes0.FKI_COMMENT_POST;
-    public static final Index FKI_POST_AUTHOR = Indexes0.FKI_POST_AUTHOR;
     public static final Index POST_PKEY = Indexes0.POST_PKEY;
     public static final Index POST_DETAIL_PKEY = Indexes0.POST_DETAIL_PKEY;
-    public static final Index FKI_POST_TAG_POST = Indexes0.FKI_POST_TAG_POST;
-    public static final Index FKI_POST_TAG_TAG = Indexes0.FKI_POST_TAG_TAG;
     public static final Index POST_TAG_PKEY = Indexes0.POST_TAG_PKEY;
     public static final Index TAG_PKEY = Indexes0.TAG_PKEY;
 
@@ -54,13 +49,8 @@ public class Indexes {
     private static class Indexes0 extends AbstractKeys {
         public static Index AUTHOR_PKEY = createIndex("author_pkey", Author.AUTHOR, new OrderField[] { Author.AUTHOR.ID }, true);
         public static Index COMMENT_PKEY = createIndex("comment_pkey", Comment.COMMENT, new OrderField[] { Comment.COMMENT.ID }, true);
-        public static Index FKI_COMMENT_AUTHOR = createIndex("fki_comment_author", Comment.COMMENT, new OrderField[] { Comment.COMMENT.AUTHOR_ID }, false);
-        public static Index FKI_COMMENT_POST = createIndex("fki_comment_post", Comment.COMMENT, new OrderField[] { Comment.COMMENT.POST_ID }, false);
-        public static Index FKI_POST_AUTHOR = createIndex("fki_post_author", Post.POST, new OrderField[] { Post.POST.AUTHOR_ID }, false);
         public static Index POST_PKEY = createIndex("post_pkey", Post.POST, new OrderField[] { Post.POST.ID }, true);
         public static Index POST_DETAIL_PKEY = createIndex("post_detail_pkey", PostDetail.POST_DETAIL, new OrderField[] { PostDetail.POST_DETAIL.ID }, true);
-        public static Index FKI_POST_TAG_POST = createIndex("fki_post_tag_post", PostTag.POST_TAG, new OrderField[] { PostTag.POST_TAG.POST_ID }, false);
-        public static Index FKI_POST_TAG_TAG = createIndex("fki_post_tag_tag", PostTag.POST_TAG, new OrderField[] { PostTag.POST_TAG.TAG_ID }, false);
         public static Index POST_TAG_PKEY = createIndex("post_tag_pkey", PostTag.POST_TAG, new OrderField[] { PostTag.POST_TAG.POST_ID, PostTag.POST_TAG.TAG_ID }, true);
         public static Index TAG_PKEY = createIndex("tag_pkey", Tag.TAG, new OrderField[] { Tag.TAG.ID }, true);
     }

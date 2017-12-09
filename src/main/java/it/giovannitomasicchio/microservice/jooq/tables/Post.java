@@ -41,7 +41,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Post extends TableImpl<PostRecord> {
 
-    private static final long serialVersionUID = 1293895340;
+    private static final long serialVersionUID = 553219269;
 
     /**
      * The reference instance of <code>public.post</code>
@@ -62,14 +62,14 @@ public class Post extends TableImpl<PostRecord> {
     public final TableField<PostRecord, BigDecimal> ID = createField("id", org.jooq.impl.SQLDataType.NUMERIC.nullable(false), this, "");
 
     /**
-     * The column <code>public.post.author_id</code>.
-     */
-    public final TableField<PostRecord, BigDecimal> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.NUMERIC.nullable(false), this, "");
-
-    /**
      * The column <code>public.post.data</code>.
      */
-    public final TableField<PostRecord, Timestamp> DATA = createField("data", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<PostRecord, Timestamp> DATA = createField("data", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
+
+    /**
+     * The column <code>public.post.author_id</code>.
+     */
+    public final TableField<PostRecord, BigDecimal> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.NUMERIC, this, "");
 
     /**
      * Create a <code>public.post</code> table reference
@@ -113,7 +113,7 @@ public class Post extends TableImpl<PostRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.FKI_POST_AUTHOR, Indexes.POST_PKEY);
+        return Arrays.<Index>asList(Indexes.POST_PKEY);
     }
 
     /**
