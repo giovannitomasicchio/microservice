@@ -1,16 +1,20 @@
 package it.giovannitomasicchio.microservice;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 
 @SpringBootApplication
-public class MicroserviceApplication implements ApplicationListener<ContextRefreshedEvent> {
+public class MicroserviceApplication implements ApplicationListener<ApplicationReadyEvent> {
+	
+	@Autowired
+	ApplicationProperties applicationProperties;
 	
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(MicroserviceApplication.class, args);
@@ -26,7 +30,7 @@ public class MicroserviceApplication implements ApplicationListener<ContextRefre
 	}
 
 	@Override
-	public void onApplicationEvent(ContextRefreshedEvent arg0) {
-		// eventuale codice da eseguire dopo il refresh del context di Spring
+	public void onApplicationEvent(ApplicationReadyEvent event) {
+		System.out.println(applicationProperties.getStartupMessage());
 	}
 }
