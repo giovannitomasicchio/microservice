@@ -16,14 +16,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
 
 @Entity
 @Table(name = "post")
+@Data
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +37,6 @@ public class Post implements Serializable {
 
 	private LocalDateTime data;
 
-	@JsonBackReference
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 
@@ -43,92 +44,17 @@ public class Post implements Serializable {
 	@JoinColumn(name = "author_id", foreignKey=@ForeignKey(name="fk_post_author"))
 	private Author author;
 
-	@JsonManagedReference
-	@OneToOne(mappedBy="post", cascade=CascadeType.ALL, fetch=FetchType.LAZY, optional = false)
+	@OneToOne(mappedBy="post", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private PostDetail postDetail;
 
-	@JsonBackReference
 	@OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PostTag> postTags;
-
-	public Post() {
+	
+	@PreUpdate
+    @PrePersist
+    public void setBidirectionalReferences() {
+		if(this.postDetail != null) {
+			this.postDetail.setPost(this);
+		}
 	}
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public LocalDateTime getData() {
-		return this.data;
-	}
-
-	public void setData(LocalDateTime data) {
-		this.data = data;
-	}
-
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Comment addComment(Comment comment) {
-		getComments().add(comment);
-		comment.setPost(this);
-
-		return comment;
-	}
-
-	public Comment removeComment(Comment comment) {
-		getComments().remove(comment);
-		comment.setPost(null);
-
-		return comment;
-	}
-
-	public Author getAuthor() {
-		return this.author;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
-
-	public PostDetail getPostDetail() {
-		return this.postDetail;
-	}
-
-	public void setPostDetail(PostDetail postDetail) {
-		this.postDetail = postDetail;
-		postDetail.setPost(this); // IMPORTANTE !!!
-	}
-
-	public List<PostTag> getPostTags() {
-		return this.postTags;
-	}
-
-	public void setPostTags(List<PostTag> postTags) {
-		this.postTags = postTags;
-	}
-
-	public PostTag addPostTag(PostTag postTag) {
-		getPostTags().add(postTag);
-		postTag.setPost(this);
-
-		return postTag;
-	}
-
-	public PostTag removePostTag(PostTag postTag) {
-		getPostTags().remove(postTag);
-		postTag.setPost(null);
-
-		return postTag;
-	}
-
 }

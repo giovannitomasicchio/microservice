@@ -23,24 +23,28 @@ public class PostControler {
 	PostService postService;
 	
 	@GetMapping("/bycustomjpa/")
-    public Post bycustomjpa(@RequestParam("id") Long id) {
-        return postService.bycustomjpa();
+    public PostDTO bycustomjpa(@RequestParam("id") Long id) {
+        return postService.bycustomjpa(id);
+    }
+	
+	@GetMapping("/findById/{id}")
+    public PostDTO findById(@PathVariable Long id) {
+		 return postService.findById(id);
     }
 	
 	@GetMapping("/byjpanamedquery/{id}")
-    public Post byjpanamedquery(@PathVariable Long id) {
+    public PostDTO byjpanamedquery(@PathVariable Long id) {
 		 return postService.byjpanamedquery(id);
     }
 	
 	@GetMapping("/byjooq/{id}")
     public List<PostDTO> get(@PathVariable Long id) {
 		 return postService.byjooq(id);
-    }
-	
+    }	
 	
 	@PostMapping("/")
-	public void create(@RequestBody Post post) {
-		postService.create(post);
+	public void create(@RequestBody PostDTO dto) {
+		Post savedPost = postService.create(dto);
+		System.out.println("Post ID = " + savedPost.getId());
 	}
-
 }

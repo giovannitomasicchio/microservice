@@ -1,14 +1,16 @@
 package it.giovannitomasicchio.microservice.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
+import lombok.Value;
+
+@Value
 public class PostDTO {
-
-	public long id;
-
-	public LocalDateTime data;
-	
-	public String body;
-
-	public String title;
+	Long id;
+	LocalDateTime data;
+	String body, title;
+	AuthorDTO author;
+	ArrayList<TagDTO> tags;
+	ArrayList<CommentDTO> comment;
 }

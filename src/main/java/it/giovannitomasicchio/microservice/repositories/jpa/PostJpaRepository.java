@@ -1,7 +1,13 @@
 package it.giovannitomasicchio.microservice.repositories.jpa;
 
-import javax.persistence.EntityManager;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -17,13 +23,30 @@ public interface PostJpaRepository  extends JpaRepository<Post, Long> {
 	 */
 	Post getPostDetailAuthor(@Param("id") Long id);
 	
+	@EntityGraph(attributePaths = { "postDetail", "author",  "postTags", "postTags.tag"})
+	Optional<Post> findById(Long id);
+	
 	/**
 	 * Esempio di metodo custom
+	 * @param id 
 	 * 
 	 * @return
 	 */
-	default Post zaza(EntityManager em) {
-		return em.find(Post.class, Long.valueOf(1));
+	@Transactional // per lasciare aperta la sessione di Hibernate dopo la find
+	default Post bycustomjpa(EntityManager em, Long id) {
+		javax.persistence.EntityGraph<Post> eg = em.createEntityGraph(Post.class);
+		eg.addAttributeNodes("author", "postDetail");
+		eg.addSubgraph("postTags").addAttributeNodes("tag");
+		
+		Map<String, Object> hints = new HashMap<>();
+		hints.put("javax.persistence.fetchgraph", eg);
+		
+		Post p = em.find(Post.class, id, hints);
+		if(p != null) {
+			p.getComments().forEach(c -> c.getAuthor().getName());
+		}
+		
+		return p;
 	}
 
 }

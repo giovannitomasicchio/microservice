@@ -7,9 +7,12 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 
+@EnableAsync
 @SpringBootApplication
 public class MicroserviceApplication implements ApplicationListener<ApplicationReadyEvent> {
 	
@@ -27,6 +30,13 @@ public class MicroserviceApplication implements ApplicationListener<ApplicationR
 		omb.modulesToInstall(new Hibernate5Module());
 		omb.indentOutput(true);
 		return omb;
+	}
+	
+	@Bean
+	public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
+		ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
+		pool.setCorePoolSize(applicationProperties.getThreadPoolSize());
+		return pool;
 	}
 
 	@Override

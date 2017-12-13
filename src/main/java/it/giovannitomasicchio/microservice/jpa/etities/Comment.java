@@ -1,14 +1,25 @@
 package it.giovannitomasicchio.microservice.jpa.etities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import lombok.Data;
 
 @Entity
 @Table(name = "comment")
+@Data
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,57 +33,11 @@ public class Comment implements Serializable {
 
 	private LocalDateTime data;
 
-	@JsonManagedReference
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "author_id", foreignKey=@ForeignKey(name="fk_comment_author"))
 	private Author author;
 
-	@JsonManagedReference
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "post_id", foreignKey=@ForeignKey(name="fk_comment_post"))
 	private Post post;
-
-	public Comment() {
-	}
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getBody() {
-		return this.body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
-	}
-
-	public LocalDateTime getData() {
-		return this.data;
-	}
-
-	public void setData(LocalDateTime data) {
-		this.data = data;
-	}
-
-	public Author getAuthor() {
-		return this.author;
-	}
-
-	public void setAuthor(Author author) {
-		this.author = author;
-	}
-
-	public Post getPost() {
-		return this.post;
-	}
-
-	public void setPost(Post post) {
-		this.post = post;
-	}
-
 }

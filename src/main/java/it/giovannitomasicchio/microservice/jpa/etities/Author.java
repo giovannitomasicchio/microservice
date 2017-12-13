@@ -12,10 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
 
 @Entity
 @Table(name = "author")
+@Data
 public class Author implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,75 +28,9 @@ public class Author implements Serializable {
 
 	private String name;
 
-	@JsonBackReference
 	@OneToMany(mappedBy="author")
 	private List<Comment> comments;
 
-	@JsonBackReference
 	@OneToMany(mappedBy="author")
 	private List<Post> posts;
-
-	public Author() {
-	}
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Comment addComment(Comment comment) {
-		getComments().add(comment);
-		comment.setAuthor(this);
-
-		return comment;
-	}
-
-	public Comment removeComment(Comment comment) {
-		getComments().remove(comment);
-		comment.setAuthor(null);
-
-		return comment;
-	}
-
-	public List<Post> getPosts() {
-		return this.posts;
-	}
-
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
-	}
-
-	public Post addPost(Post post) {
-		getPosts().add(post);
-		post.setAuthor(this);
-
-		return post;
-	}
-
-	public Post removePost(Post post) {
-		getPosts().remove(post);
-		post.setAuthor(null);
-
-		return post;
-	}
-
 }
