@@ -16,16 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "post")
-@Data
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -49,12 +44,86 @@ public class Post implements Serializable {
 
 	@OneToMany(mappedBy="post", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PostTag> postTags;
+
+	public Long getId() {
+		return id;
+	}
+
+	public Post setId(Long id) {
+		this.id = id;
+		return this;
+	}
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public Post setData(LocalDateTime data) {
+		this.data = data;
+		return this;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public Post setComments(List<Comment> comments) {
+		this.comments = comments;
+		return this;
+	}
 	
-	@PreUpdate
-    @PrePersist
-    public void setBidirectionalReferences() {
-		if(this.postDetail != null) {
-			this.postDetail.setPost(this);
-		}
+	public Comment addComment(Comment comment) {
+		getComments().add(comment);
+		comment.setPost(this);
+
+		return comment;
+	}
+
+	public Comment removeComment(Comment comment) {
+		getComments().remove(comment);
+		comment.setPost(null);
+
+		return comment;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public Post setAuthor(Author author) {
+		this.author = author;
+		return this;
+	}
+
+	public PostDetail getPostDetail() {
+		return postDetail;
+	}
+
+	public Post setPostDetail(PostDetail postDetail) {
+		this.postDetail = postDetail;
+		return this;
+	}
+
+	public List<PostTag> getPostTags() {
+		return postTags;
+	}
+
+	public Post setPostTags(List<PostTag> postTags) {
+		this.postTags = postTags;
+		return this;
+	}
+	
+	public PostTag addPostTag(PostTag postTag) {
+		getPostTags().add(postTag);
+		postTag.setPost(this);
+
+		return postTag;
+	}
+
+	public PostTag removePostTag(PostTag postTag) {
+		getPostTags().remove(postTag);
+		postTag.setPost(null);
+
+		return postTag;
 	}
 }

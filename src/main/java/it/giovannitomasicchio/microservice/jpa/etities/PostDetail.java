@@ -12,11 +12,8 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name="post_detail")
-@Data
 public class PostDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -32,4 +29,40 @@ public class PostDetail implements Serializable {
 	@JoinColumn(name="id", foreignKey=@ForeignKey(name="fk_post_detail_post"))
 	@MapsId
 	private Post post;
+
+	public Long getId() {
+		return id;
+	}
+
+	public PostDetail setId(Long id) {
+		this.id = id;
+		return this;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public PostDetail setBody(String body) {
+		this.body = body;
+		return this;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public PostDetail setTitle(String title) {
+		this.title = title;
+		return this;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public PostDetail setPost(Post post) {
+		this.post = post;
+		return this;
+	}
 }

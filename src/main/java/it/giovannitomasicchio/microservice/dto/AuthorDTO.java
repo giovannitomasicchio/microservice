@@ -1,9 +1,21 @@
 package it.giovannitomasicchio.microservice.dto;
 
-import lombok.Value;
+public final class AuthorDTO {
+	
+	private final Long id;
+	
+	private final String name;
+	
+	public AuthorDTO(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-@Value
-public class AuthorDTO {
-	Long id;
-	String name;
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

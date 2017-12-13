@@ -13,11 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "tag")
-@Data
 public class Tag implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,4 +28,45 @@ public class Tag implements Serializable {
 
 	@OneToMany(mappedBy="tag", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<PostTag> postTags;
+
+	public Long getId() {
+		return id;
+	}
+
+	public Tag setId(Long id) {
+		this.id = id;
+		return this;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Tag setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	public List<PostTag> getPostTags() {
+		return postTags;
+	}
+
+	public Tag setPostTags(List<PostTag> postTags) {
+		this.postTags = postTags;
+		return this;
+	}
+	
+	public PostTag addPostTag(PostTag postTag) {
+		getPostTags().add(postTag);
+		postTag.setTag(this);
+
+		return postTag;
+	}
+
+	public PostTag removePostTag(PostTag postTag) {
+		getPostTags().remove(postTag);
+		postTag.setTag(null);
+
+		return postTag;
+	}
 }

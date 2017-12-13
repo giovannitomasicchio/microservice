@@ -1,7 +1,6 @@
 package it.giovannitomasicchio.microservice.repositories.jooq;
 
-import static it.giovannitomasicchio.microservice.jooq.Tables.POST;
-import static it.giovannitomasicchio.microservice.jooq.Tables.POST_DETAIL;
+import static it.giovannitomasicchio.microservice.jooq.Tables.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -28,18 +27,23 @@ public class PostJooqRepository {
 	
 	public List<PostDTO> get(Long id) {
 		
-		Condition cond1 = DSL.trueCondition();
+		Condition condition = DSL.trueCondition();
 		
 		if(id != null && id.longValue() != 0) {
-			cond1 = cond1.and(POST.ID.eq(BigDecimal.valueOf(id)));
+			condition = condition.and(POST.ID.eq(BigDecimal.valueOf(id)));
 		}
 		
 		return create
-				.selectFrom(POST
-				.join(POST_DETAIL)
-					.on(POST.ID.eq(POST_DETAIL.ID)))
+				.select(
+						POST.ID, POST.DATA, POST.AUTHOR_ID, AUTHOR.NAME, POST_DETAIL.BODY, POST_DETAIL.TITLE).
+				from(
+						POST
+						.join(POST_DETAIL)
+							.on(POST.ID.eq(POST_DETAIL.ID))
+						.join(AUTHOR)
+							.on(POST.AUTHOR_ID.eq(AUTHOR.ID)))
 				.where(
-					cond1
+						condition
 				)
 				.fetch()
 				.into(PostDTO.class);

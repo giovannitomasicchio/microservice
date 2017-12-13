@@ -11,11 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name="post_tag")
-@Data
 public class PostTag implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,4 +28,31 @@ public class PostTag implements Serializable {
 	@JoinColumn(name = "tag_id", columnDefinition="NUMERIC", foreignKey=@ForeignKey(name="fk_post_tag_tag"))
 	@MapsId("tagId")
 	private Tag tag;
+
+	public PostTagId getId() {
+		return id;
+	}
+
+	public PostTag setId(PostTagId id) {
+		this.id = id;
+		return this;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public PostTag setPost(Post post) {
+		this.post = post;
+		return this;
+	}
+
+	public Tag getTag() {
+		return tag;
+	}
+
+	public PostTag setTag(Tag tag) {
+		this.tag = tag;
+		return this;
+	}
 }

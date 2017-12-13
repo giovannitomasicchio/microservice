@@ -5,10 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-import lombok.Data;
-
 @Embeddable
-@Data
 public class PostTagId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,4 +15,22 @@ public class PostTagId implements Serializable {
 
 	@Column(name="tag_id", insertable=false, updatable=false)
 	private Long tagId;
+
+	public Long getPostId() {
+		return postId;
+	}
+
+	public PostTagId setPostId(Long postId) {
+		this.postId = postId;
+		return this;
+	}
+
+	public Long getTagId() {
+		return tagId;
+	}
+
+	public PostTagId setTagId(Long tagId) {
+		this.tagId = tagId;
+		return this;
+	}
 }

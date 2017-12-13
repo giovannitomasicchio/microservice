@@ -1,9 +1,22 @@
 package it.giovannitomasicchio.microservice.dto;
 
-import lombok.Value;
+public final class TagDTO {
+	
+	private final Long id;
+	
+	private final String name;
 
-@Value
-public class TagDTO {
-	Long id;
-	String name;
+	public TagDTO(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
 }

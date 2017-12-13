@@ -14,13 +14,13 @@ public class PostEventsListener {
 	private static final Logger logger = LoggerFactory.getLogger(PostEventsListener.class);
 	
 	@TransactionalEventListener
-	public void onCreate2(PostCreatedEvent event) {
-		logger.info("PostEventsListener.onCreate 2");
+	public void onCreateSync(PostCreatedEvent event) {
+		logger.info("PostEventsListener.onCreateSync for post " + event.getPost().getId()); 
 	}
 	
 	@Async
 	@TransactionalEventListener
-	public void onCreate(PostCreatedEvent event) {
-		logger.info("PostEventsListener.onCreate");
+	public void onCreateAsync(PostCreatedEvent event) {
+		logger.info("PostEventsListener.onCreateAsync for post " + event.getPost().getId());
 	}
 }

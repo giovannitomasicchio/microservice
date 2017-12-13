@@ -1,13 +1,28 @@
 package it.giovannitomasicchio.microservice.dto;
 
-import lombok.Value;
+public final class AuthorStatsDTO {
 
-@Value
-public class AuthorStatsDTO {
+	private final Long id;
+	
+	private final String name;
+	
+	private final Long postCount;
 
-	public Long id;
-	
-	public String name;
-	
-	public Long postCount;
+	public AuthorStatsDTO(Long id, String name, Long postCount) {
+		this.id = id;
+		this.name = name;
+		this.postCount = postCount;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Long getPostCount() {
+		return postCount;
+	}
 }
