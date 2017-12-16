@@ -101,6 +101,7 @@ public class Post implements Serializable {
 
 	public Post setPostDetail(PostDetail postDetail) {
 		this.postDetail = postDetail;
+		postDetail.setPost(this);
 		return this;
 	}
 
