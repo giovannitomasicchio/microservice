@@ -2,6 +2,9 @@ package it.giovannitomasicchio.microservice.dto;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public final class CommentDTO {
 	
 	private final Long id;
@@ -12,7 +15,8 @@ public final class CommentDTO {
 	
 	private final AuthorDTO author;
 
-	public CommentDTO(Long id, String body, LocalDateTime data, AuthorDTO author) {
+	@JsonCreator
+	public CommentDTO(@JsonProperty("id") Long id, @JsonProperty("body") String body, @JsonProperty("data") LocalDateTime data, @JsonProperty("author") AuthorDTO author) {
 		this.id = id;
 		this.body = body;
 		this.data = data;

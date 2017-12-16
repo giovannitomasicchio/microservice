@@ -3,6 +3,9 @@ package it.giovannitomasicchio.microservice.dto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public final class PostDTO {
 	
 	private final Long id;
@@ -18,8 +21,16 @@ public final class PostDTO {
 	private final ArrayList<TagDTO> tags;
 	
 	private final ArrayList<CommentDTO> comment;
-
-	public PostDTO(Long id, LocalDateTime data, String title, String body, AuthorDTO author, ArrayList<TagDTO> tags, ArrayList<CommentDTO> comment) {
+	
+	@JsonCreator
+	public PostDTO(
+			@JsonProperty("id") Long id,
+			@JsonProperty("data") LocalDateTime data,
+			@JsonProperty("title") String title,
+			@JsonProperty("body") String body,
+			@JsonProperty("author") AuthorDTO author,
+			@JsonProperty("tags") ArrayList<TagDTO> tags,
+			@JsonProperty("comment") ArrayList<CommentDTO> comment) {
 		this.id = id;
 		this.data = data;
 		this.title = title;
